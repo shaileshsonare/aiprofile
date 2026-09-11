@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Resume</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f4f6;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: white;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* LEFT SIDEBAR */
+        .sidebar {
+            background: #172033;
+            color: white;
+            padding: 35px 25px;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .profile-image {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 45px;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile h1 {
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+        .profile p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .side-section {
+            margin-bottom: 30px;
+        }
+
+        .side-section h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #475569;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #dbeafe;
+            word-break: break-word;
+        }
+
+        .skill {
+            margin-bottom: 14px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 7px;
+            background: #374151;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: #60a5fa;
+            border-radius: 10px;
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            padding: 45px;
+        }
+
+        .section {
+            margin-bottom: 38px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #172033;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #60a5fa;
+            display: inline-block;
+        }
+
+        .about {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid #dbeafe;
+        }
+
+        .item h3 {
+            font-size: 18px;
+            color: #172033;
+        }
+
+        .item .company {
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .item .date {
+            color: #777;
+            font-size: 13px;
+            margin: 4px 0 8px;
+        }
+
+        .item p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .project h3 {
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .project p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .tags {
+            margin-top: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 4px 9px;
+            margin: 3px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .education-item {
+            margin-bottom: 20px;
+        }
+
+        .education-item h3 {
+            color: #172033;
+        }
+
+        .education-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .resume-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .resume-btn:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .sidebar {
+                padding: 30px 20px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .resume-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= LEFT SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="profile">
+
+            <!-- Replace this with your photo -->
+            <div class="profile-image">
+                SS
+                <!--
+                <img src="profile.jpg" alt="Your Name">
+                -->
+            </div>
+
+            <h1>Your Name</h1>
+            <p>Web Developer</p>
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="side-section">
+            <h2>Contact</h2>
+
+            <div class="contact-item">
+                📧 your.email@example.com
+            </div>
+
+            <div class="contact-item">
+                📱 +91 98765 43210
+            </div>
+
+            <div class="contact-item">
+                📍 Mumbai, Maharashtra, India
+            </div>
+
+            <div class="contact-item">
+                🔗 linkedin.com/in/yourname
+            </div>
+
+            <div class="contact-item">
+                💻 github.com/yourusername
+            </div>
+        </div>
+
+
+        <!-- SKILLS -->
+        <div class="side-section">
+            <h2>Skills</h2>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span>HTML</span>
+                    <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width:90%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span>CSS</span>
+                    <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width:85%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span>JavaScript</span>
+                    <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width:80%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Java</span>
+                    <span>75%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width:75%"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-name">
+                    <span>SQL</span>
+                    <span>70%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width:70%"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- LANGUAGES -->
+        <div class="side-section">
+            <h2>Languages</h2>
+
+            <div class="contact-item">English</div>
+            <div class="contact-item">Hindi</div>
+            <div class="contact-item">Marathi</div>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="content">
+
+        <!-- ABOUT -->
+        <section class="section">
+
+            <h2 class="section-title">About Me</h2>
+
+            <p class="about">
+                I am a passionate and motivated developer interested in
+                building modern, responsive and user-friendly web applications.
+                I enjoy learning new technologies, solving programming problems
+                and developing practical projects.
+            </p>
+
+            <a href="resume.pdf" class="resume-btn" download>
+                Download Resume
+            </a>
+
+        </section>
+
+
+        <!-- EXPERIENCE -->
+        <section class="section">
+
+            <h2 class="section-title">Experience</h2>
+
+            <div class="item">
+
+                <h3>Web Developer</h3>
+
+                <div class="company">
+                    Company Name
+                </div>
+
+                <div class="date">
+                    2025 - Present
+                </div>
+
+                <p>
+                    Developed responsive web applications using HTML, CSS,
+                    JavaScript and backend technologies. Worked on UI design,
+                    database integration and application testing.
+                </p>
+
+            </div>
+
+
+            <div class="item">
+
+                <h3>Java Developer Intern</h3>
+
+                <div class="company">
+                    Organization Name
+                </div>
+
+                <div class="date">
+                    2024 - 2025
+                </div>
+
+                <p>
+                    Worked on Java-based applications and learned application
+                    development, debugging, database connectivity and
+                    web technologies.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- EDUCATION -->
+        <section class="section">
+
+            <h2 class="section-title">Education</h2>
+
+            <div class="education-item">
+
+                <h3>Bachelor's Degree in Computer Science</h3>
+
+                <p>
+                    University / College Name
+                </p>
+
+                <p>
+                    2022 - 2025
+                </p>
+
+            </div>
+
+
+            <div class="education-item">
+
+                <h3>Higher Secondary Education</h3>
+
+                <p>
+                    College / School Name
+                </p>
+
+                <p>
+                    2020 - 2022
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+        <section class="section">
+
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project-grid">
+
+                <div class="project">
+
+                    <h3>Personal Portfolio</h3>
+
+                    <p>
+                        A responsive personal portfolio website showcasing
+                        my skills, projects, education and experience.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <h3>Student Management System</h3>
+
+                    <p>
+                        A web application for managing student records,
+                        including student details, courses and academic data.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">JSP</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <h3>Todo Application</h3>
+
+                    <p>
+                        A simple task management application that allows users
+                        to add, edit, complete and delete tasks.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+
+                </div>
+
+
+                <div class="project">
+
+                    <h3>Weather Application</h3>
+
+                    <p>
+                        A weather application that displays current weather
+                        information using an API.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">API</span>
+                        <span class="tag">CSS</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CERTIFICATIONS -->
+        <section class="section">
+
+            <h2 class="section-title">Certifications</h2>
+
+            <div class="item">
+                <h3>Web Development Certification</h3>
+                <div class="company">Organization Name</div>
+                <div class="date">2025</div>
+            </div>
+
+            <div class="item">
+                <h3>Java Programming Certification</h3>
+                <div class="company">Organization Name</div>
+                <div class="date">2024</div>
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            © 2026 Your Name. All Rights Reserved.
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
